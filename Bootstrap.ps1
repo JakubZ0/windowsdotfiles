@@ -14,11 +14,6 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 New-Item -Force -ItemType SymbolicLink "$HOME\Documents\" -Name "WindowsPowerShell" -Value "$HOME\WindowsDotfiles\WindowsPowerShell"
 
-# oh-my posh
-Write-Output "Setting up oh-my-posh"
-Install-Module posh-git -Scope CurrentUser
-Install-Module oh-my-posh -Scope CurrentUser
-
 
 # Choco
 Write-Output "Setting up choco and installing apps"
@@ -35,27 +30,27 @@ scoop install aria2 sudo concfg FiraCode
 cd $PSScriptRoot
 
 
-$installation_block = {
-   $install = 
- 'cmder',                  
- '7zip.install',           
- 'discord.install ',             
- 'f.lux.install ' ,            
- 'Firefox' ,            
- 'git  ' ,         
- 'lightshot' ,         
- 'mpv',         
- 'vscodium' ,       
- 'winaero-tweaker',
+
+choco install cmder                  -y
+choco install 7zip.install           -y
+choco install discord.install        -y   
+choco install f.lux.install          -y
+choco install Firefox                -y
+choco install git                    -y
+choco install lightshot              -y
+choco install mpv                    -y
+choco install vscodium               -y
+choco install winaero-tweaker        -y
     
-     for ($i = 0; $i -lt $install.Count; $i++)
-     {
-        choco install $install[$i] -y
-    }
-}
-Start-Process powershell -ArgumentList "-command $installation_block"
 
 refreshenv
+
+
+# oh-my posh
+Write-Output "Setting up oh-my-posh"
+Install-Module posh-git -Scope CurrentUser
+Install-Module oh-my-posh -Scope CurrentUser
+
 
 
 concfg clean
