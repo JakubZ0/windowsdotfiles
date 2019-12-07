@@ -1,5 +1,7 @@
 # Windows Dotfiles
 
+![alt text](https://i.imgur.com/6ZmFEdf.png)
+
 ## Usage
 
 I use it as post-installation script to make things simpler and faster.
