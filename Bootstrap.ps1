@@ -12,34 +12,36 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 New-Item -Force -ItemType SymbolicLink "$HOME\Documents\" -Name "WindowsPowerShell" -Value "$HOME\WindowsDotfiles\WindowsPowerShell"
 
-
 # Choco
-Write-Output "Setting up choco and installing apps"
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# scoop, we will use 2 package managers cus choco is missing few useful programs.....
-Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
+# scoop
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 scoop bucket add extras
 scoop bucket add nerd-fonts
-
 scoop install aria2 sudo concfg FiraCode
-
 cd $PSScriptRoot
 
+refreshenv
 
 
+#choco software
 choco install cmder                  -y
 choco install 7zip.install           -y
 choco install discord.install        -y   
 choco install f.lux.install          -y
 choco install Firefox                -y
-choco install git                    -y
+choco install --force git --params "/NoGuiHereIntegration /NoShellHereIntegration" -y
 choco install lightshot              -y
 choco install mpv                    -y
 choco install vscodium               -y
 choco install winaero-tweaker        -y
-    
+choco install gpg4win                -y #how the f* do u disable context menu integration.....
+choco install choco-upgrade-all-at --params "'/TIME:20:00'" -y
+choco install irfanview             -y
+
+
 
 refreshenv
 
@@ -50,9 +52,9 @@ Install-Module posh-git -Scope CurrentUser
 Install-Module oh-my-posh -Scope CurrentUser
 
 
-
+#making powershell nice
 concfg clean
-concfg import -n solarized-dark .\files\firacode-light.json
+concfg import -n dracula .\files\firacode-light.json
 concfg tokencolor disable
 Clear-Host
 
@@ -60,11 +62,8 @@ Clear-Host
 
 #configs
 Write-Output "Creating config links"
-New-Item -Force -ItemType SymbolicLink $HOME\Documents\ -Name "WindowsPowerShell" -Value $HOME\WindowsDotfiles\WindowsPowerShell
 New-Item -Force -ItemType SymbolicLink $HOME\AppData\Roaming\VSCodium\User -Name settings.json -Value $HOME\WindowsDotfiles\files\settings.json
-New-Item -Force -ItemType SymbolicLink C:\tools\Cmder\vendor\conemu-maximus5\ -Name ConEmu.xml -Value $HOME\WindowsDotfiles\files\ConEmu.xml
-
-
+New-Item -Force -ItemType SymbolicLink $HOME\ -Name .gitconfig -Value $HOME\WindowsDotfiles\files\.gitconfig
 
 refreshenv
 
@@ -103,10 +102,6 @@ $extensions_block = {
 Start-Process powershell -ArgumentList "-command $extensions_block"
 
 
-$registry = {
 # import registry changes
 ls -r reg *.reg | foreach { reg import $_.FullName }
 kill -ProcessName explorer -Force # restart explorer, to apply changes made in registry
-}
-
-Start-Process powershell -ArgumentList "-command $registry"

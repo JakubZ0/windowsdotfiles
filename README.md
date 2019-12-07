@@ -20,3 +20,8 @@ Get-ChildItem "$HOME\Downloads\" -Filter *.zip | Expand-Archive -DestinationPath
 Rename-Item -NewName "WindowsDotfiles" -Path "$HOME\windowsdotfiles-master"; `
 . "$HOME\WindowsDotfiles\Bootstrap.ps1"
 ```
+
+
+## todo
+
+-setup proper cmder config syslink.
