@@ -19,7 +19,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 
 choco feature enable -n=allowGlobalConfirmation
 
-Write-Host "time for apps!"
+Write-Host "time for apps! Don't forget to set Quad9 Security in DNS Jumper."
 $appschoco = @(
 	"veracrypt",
 	"vlc",
@@ -37,8 +37,9 @@ $appschoco = @(
 	"chocolatey-core.extension",
 	"mm-choco.extension",
 	"imageglass",
-	"discord"
-
+	"discord",
+	"minibin",
+	"dnsjumper"
 )
 foreach ($app in $appschoco) {
 	choco install $app -y -r}
@@ -49,8 +50,8 @@ $appswinget = @(
 	"M2Team.NanaZip",
 	"TechPowerUp.NVCleanstall",
 	"Caprine.Caprine",
-	"startallback"
-
+	"startallback",
+	"MicaForEveryone.MicaForEveryone"
 )
 
 foreach ($app2 in $appswinget) {
