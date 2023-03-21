@@ -9,10 +9,10 @@ Using ReviOs which is mostly debloated, so deleting appx won't happend in this s
 #>
 
 
-Write-Host "check if if ran as admin"
+Write-Host "check if ran as admin"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-Write-Host "installibf choco"
+Write-Host "install choco"
 Set-ExecutionPolicy Bypass -Scope Process -Force; 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
@@ -35,8 +35,11 @@ $appschoco = @(
 	"firefox",
 	"au", 
 	"chocolatey-core.extension",
-	"mm-choco.extension"
-	)
+	"mm-choco.extension",
+	"imageglass",
+	"discord"
+
+)
 foreach ($app in $appschoco) {
 	choco install $app -y -r}
 
@@ -45,7 +48,9 @@ foreach ($app in $appschoco) {
 $appswinget = @(
 	"M2Team.NanaZip",
 	"TechPowerUp.NVCleanstall",
-	"Caprine.Caprine"
+	"Caprine.Caprine",
+	"startallback"
+
 )
 
 foreach ($app2 in $appswinget) {
