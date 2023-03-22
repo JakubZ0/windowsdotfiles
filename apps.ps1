@@ -26,20 +26,20 @@ $appschoco = @(
 	"microsoft-windows-terminal",
 	"lightshot.install",
 	"qbittorrent-enhanced",
-	"firacode",
 	"eartrumpet",
 	"winaero-tweaker.install",
 	"powertoys",
-	"neovim",
 	"office-tool",
 	"firefox",
 	"au", 
 	"chocolatey-core.extension",
+	"chocolateygui",
 	"mm-choco.extension",
 	"imageglass",
 	"discord",
 	"minibin",
-	"dnsjumper"
+	"dnsjumper",
+	"nerd-fonts-sourcecodepro"
 )
 foreach ($app in $appschoco) {
 	choco install $app -y -r}
@@ -51,7 +51,10 @@ $appswinget = @(
 	"TechPowerUp.NVCleanstall",
 	"Caprine.Caprine",
 	"startallback",
-	"MicaForEveryone.MicaForEveryone"
+	"MicaForEveryone.MicaForEveryone",
+	"JackieLiu.NotepadsApp",
+	"pit-ray.win-vind",
+	"VSCodium.VSCodium"
 )
 
 foreach ($app2 in $appswinget) {
