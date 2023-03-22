@@ -5,7 +5,7 @@ Author: jakub1812
 
 Requires to be ran as administrator/
 
-Using ReviOs which is mostly debloated, so deleting appx won't happend in this script
+Changing from ReviOs to Windows 11 Pro ntlite-jakub-distro due to trust issues on previous homebrew.
 #>
 
 
