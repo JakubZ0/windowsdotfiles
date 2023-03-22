@@ -54,7 +54,8 @@ $appswinget = @(
 	"MicaForEveryone.MicaForEveryone",
 	"JackieLiu.NotepadsApp",
 	"pit-ray.win-vind",
-	"VSCodium.VSCodium"
+	"VSCodium.VSCodium",
+    "GitHub.GitHubDesktop"
 )
 
 foreach ($app2 in $appswinget) {
